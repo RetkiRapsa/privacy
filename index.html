@@ -25,48 +25,67 @@
 <body>
 
 <h1>RetkiRapsa – Tietosuojaseloste</h1>
-<p><em>Viimeksi päivitetty: 3.12.2025</em></p>
+<p><em>Viimeksi päivitetty: 10.12.2025</em></p>
 
 <p>
-Tämä tietosuojaseloste kuvaa, miten RetkiRapsa (”sovellus”) kerää, käyttää,
-säilyttää ja suojaa käyttäjiensä tietoja. RetkiRapsa on Agasoftin kehittämä
-mobiilisovellus ulkoilukohteiden arvioimiseen ja löytämiseen.
+Tämä tietosuojaseloste kuvaa, miten RetkiRapsa ("sovellus") kerää, käyttää,
+säilyttää ja suojaa käyttäjiensä tietoja. RetkiRapsa on Artur Gajewskin kehittämä
+mobiilisovellus retkikohteiden löytämiseen ja tietojen jakamiseen.
 </p>
 
 <h2>1. Kerättävät tiedot</h2>
 
-<h3>1.1 Laitteen tunniste (Device ID)</h3>
+<h3>1.1 Käyttäjätunnus (valinnainen)</h3>
 <p>
-Sovellus luo satunnaisen tunnisteen laitteellesi (SecureStore). Sitä käytetään
-arvostelujen yhdistämiseen samaan käyttäjään. Tunnistetta ei voi yhdistää
-henkilöön.
+Sovellus tukee vapaaehtoista käyttäjätunnuksen luomista. Käyttäjätunnus on
+merkkijono, jota käytetään luotujen kohteiden ja päivitysten yhdistämiseen
+käyttäjään sekä muokkausoikeuksien hallintaan. Käyttäjätunnusta ei voi yhdistää
+henkilötietoihin, ellei käyttäjä itse valitse käyttää oikeaa nimeään.
 </p>
 
-<h3>1.2 Sijaintitiedot (valinnaiset)</h3>
+<h3>1.2 Laitteen tunniste (Device ID)</h3>
 <p>
-Sovellus voi pyytää lupaa käyttää sijaintiasi, jotta voit nähdä oman sijaintisi
-kartalla ja löytää lähellä olevia kohteita. Sijaintitietoja ei tallenneta
-palvelimelle eikä jaeta kolmansille osapuolille.
+Sovellus luo satunnaisen tunnisteen (UUID) laitteellesi (SecureStore). Sitä käytetään
+varmuuskopiona, jos käyttäjä ei ole luonut käyttäjätunnusta. Tunnistetta ei voi
+yhdistää henkilöön.
 </p>
 
-<h3>1.3 Käyttäjän jättämät arvostelut</h3>
+<h3>1.3 Sijaintitiedot (valinnaiset)</h3>
 <p>
-Kun lisäät arvion kohteesta, tallennetaan: arvio, kommentit, tähtiarvio,
-mahdolliset havainnot (esim. punkit) sekä laitetunniste. Nämä tiedot näkyvät
-julkisesti sovelluksessa, mutta eivät sisällä henkilötietoja.
+Sovellus pyytää lupaa käyttää sijaintiasi, jotta voit nähdä oman sijaintisi
+kartalla, löytää lähellä olevia retkikohteita (5 km säteellä) ja lisätä uusia
+kohteita nykyisessä sijainnissasi. Sijaintitietoja ei tallenneta palvelimelle
+jatkuvasti. Vain lisättävien kohteiden koordinaatit tallennetaan.
 </p>
 
-<h3>1.4 Tekniset tiedot</h3>
+<h3>1.4 Käyttäjän lisäämät kohteet</h3>
+<p>
+Kun lisäät uuden retkikohteen, tallennetaan: kohteen nimi, kohteen tyyppi
+(laavu, tulipaikka, leirintäalue, jne.), koordinaatit (latitude, longitude),
+käyttäjätunnus tai laitetunniste sekä lisäysaika. Nämä tiedot näkyvät julkisesti
+sovelluksessa kaikille käyttäjille.
+</p>
+
+<h3>1.5 Käyttäjän lisäämät päivitykset</h3>
+<p>
+Kun lisäät päivityksen olemassa olevaan kohteeseen, tallennetaan: vapaamuotoinen
+tekstikenttä (havainnot), kohteen käytettävyys (käytössä/ei käytössä),
+punkkihavainnot (kyllä/ei), käyttäjätunnus tai laitetunniste sekä lisäysaika.
+Päivitykset näkyvät julkisesti kaikille sovelluksen käyttäjille.
+</p>
+
+<h3>1.6 Tekniset tiedot</h3>
 <p>
 Sovellus voi kerätä anonyymejä teknisiä tietoja, kuten sovellusversion,
-käyttöjärjestelmän ja virhelokeja sovelluksen toiminnan parantamiseksi.
+käyttöjärjestelmän (iOS/Android) ja virhelokeja sovelluksen toiminnan parantamiseksi.
 </p>
 
 <h2>2. Tietojen käyttötarkoitus</h2>
 <ul>
-    <li>Sovelluksen ydintoimintojen tarjoaminen</li>
+    <li>Sovelluksen ydintoimintojen tarjoaminen (kartta, kohteiden listaus)</li>
+    <li>Käyttäjien lisäämien kohteiden ja päivitysten näyttäminen</li>
     <li>Sovelluksen vakauden ja toiminnallisuuden parantaminen</li>
-    <li>Arvostelujen yhdistäminen samaan käyttäjätunnisteeseen</li>
+    <li>Kohteiden ja päivitysten yhdistäminen käyttäjään (muokkausoikeudet)</li>
 </ul>
 
 <h2>3. Tietojen tallennus ja säilytys</h2>
@@ -76,38 +95,54 @@ käyttöjärjestelmän ja virhelokeja sovelluksen toiminnan parantamiseksi.
 RetkiRapsa käyttää seuraavia palveluita:
 </p>
 <ul>
-    <li>AWS EC2 (EU North)</li>
-    <li>AWS RDS PostgreSQL (EU North)</li>
+    <li>Backend: Ubuntu VPS (OVH, EU)</li>
+    <li>Tietokanta: PostgreSQL (sama VPS)</li>
+    <li>HTTPS-suojaus: Let's Encrypt SSL-sertifikaatit</li>
 </ul>
+<p>
+Kaikki tiedonsiirto on suojattu HTTPS-salauksella.
+</p>
 
 <h3>3.2 Säilytysaika</h3>
 <p>
-Tietoja säilytetään niin kauan kuin ne ovat tarpeellisia sovelluksen
-toiminnalle. Käyttäjä voi pyytää arvostelujensa poistamista antamalla laitetunnisteensa.
+Kohteet ja päivitykset säilytetään niin kauan kuin ne ovat tarpeellisia sovelluksen
+toiminnalle. Käyttäjä voi pyytää omiensa tietojen poistamista (kohteet ja päivitykset)
+ottamalla yhteyttä kehittäjään. Käyttäjä voi itse poistaa omat päivityksensä
+sovelluksen kautta.
 </p>
 
 <h2>4. Tietojen luovutus</h2>
 <p>
-RetkiRapsa ei myy tai luovuta tietoja kolmansille osapuolille. Ainoat käytetyt
-palvelut ovat Supabase, AWS ja Expo — kaikki GDPR-yhteensopivia.
+RetkiRapsa <strong>ei myy tai luovuta</strong> tietoja kolmansille osapuolille.
+Kaikki tiedot säilytetään omalla palvelimella.
 </p>
+<p>
+Käytetyt kolmannen osapuolen palvelut:
+</p>
+<ul>
+    <li>OVH – palvelintilan tarjoaja</li>
+    <li>Let's Encrypt – SSL-sertifikaattien tarjoaja</li>
+    <li>Expo – mobiilisovelluskehitysalusta (vain kehitysvaiheessa)</li>
+</ul>
 
 <h2>5. Tietoturva</h2>
 <p>
-Kaikki tiedonsiirto on suojattu HTTPS-salauksella. Tietokannat ovat suojattuja
-ja käyttöoikeudet rajattuja.
+Kaikki tiedonsiirto on suojattu <strong>HTTPS-salauksella</strong>. Tietokannat
+ovat suojattuja ja käyttöoikeudet rajattuja. Backend-palvelin on suojattu
+palomuurilla ja säännöllisesti päivitetty. Käyttäjien tunnistamiseen käytetään
+JWT-tokeneita, jotka vanhenevat 24 tunnissa.
 </p>
 
 <h2>6. Käyttäjän oikeudet</h2>
-<p>Käyttäjällä on oikeus pyytää:</p>
+<p>Käyttäjällä on oikeus:</p>
 <ul>
-    <li>tietojensa poistamista</li>
-    <li>pääsyä omiin tietoihinsa</li>
-    <li>kieltäytyä tietojen käsittelystä poistamalla sovelluksen</li>
+    <li>Tietojen tarkastelu: Omat kohteet ja päivitykset näkyvät sovelluksessa</li>
+    <li>Tietojen muokkaus: Käyttäjä voi muokata omia päivityksiään</li>
+    <li>Tietojen poisto: Käyttäjä voi poistaa omia päivityksiään sovelluksen kautta</li>
+    <li>Tietojen poistaminen kokonaan: Pyytää kaikkien tietojensa poistamista ottamalla yhteyttä kehittäjään</li>
 </ul>
 <p>
-Koska emme kerää henkilötietoja, tunnistaminen tapahtuu vain laitetunnisteen
-perusteella.
+Koska sovellus kerää henkilötietoja, tunnistaminen tapahtuu käyttäjätunnuksen perusteella.
 </p>
 
 <h2>7. Lasten yksityisyys</h2>
@@ -115,17 +150,31 @@ perusteella.
 Sovellus ei ole suunnattu alle 13-vuotiaille, eikä se kerää tietoja heistä.
 </p>
 
-<h2>8. Muutokset tietosuojaselosteeseen</h2>
+<h2>8. Evästeet ja seuranta</h2>
 <p>
-Voimme päivittää tätä tietosuojaselostetta tarvittaessa. Päivitetty versio
-julkaistaan tällä sivulla.
+RetkiRapsa-mobiilisovellus <strong>ei käytä evästeitä</strong> eikä kolmannen
+osapuolen seurantatyökaluja (kuten Google Analytics).
+</p>
+<p>
+Verkkosivusto (www.retkirapsa.com) on staattinen HTML-sivu, joka ei käytä
+evästeitä eikä kerää käyttäjätietoja.
 </p>
 
-<h2>9. Yhteystiedot</h2>
+<h2>9. Muutokset tietosuojaselosteeseen</h2>
 <p>
-Jos sinulla on kysyttävää tietosuojasta, ota yhteyttä:<br />
-<strong>AgaSoft / RetkiRapsa<br />
+Tätä tietosuojaselostetta päivitetään tarvittaessa sovelluksen kehittyessä.
+Päivitetty versio julkaistaan tällä sivulla (https://retkirapsa.github.io/privacy/)
+ja sovelluksen Tietoa-osiossa. Merkittävistä muutoksista ilmoitetaan sovelluksessa.
+</p>
+
+<h2>10. Yhteystiedot</h2>
+<p>
+Jos sinulla on kysyttävää tietosuojasta tai haluat käyttää oikeuksiasi, ota yhteyttä:<br />
+<strong>Artur Gajewski / RetkiRapsa<br />
 Sähköposti: <a href="mailto:artur.gajewski@hotmail.com">artur.gajewski@hotmail.com</a></strong>
+</p>
+<p>
+Vastaan kyselyihin 14 päivän kuluessa.
 </p>
 
 </body>
